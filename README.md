@@ -52,15 +52,15 @@ To build from source, clone the latest version from this repository into your ca
 
 1. Record data while driving in the environment:
 
-        roslaunch TODO
+        roslaunch lidar_turtlebot_cartographer record.launch
     
 2. Run offline cartographer node (creates .pbstream-file):
 
-        roslaunch TODO
+        roslaunch lidar_turtlebot_cartographer turtlebot_offline.launch bag_filenames:=/....
     
 3. Create map:
 
-        roslaunch TODO
+        roslaunch lidar_turtlebot_cartographer turtlebot_map_creation.launch bag_filenames:=/...
 
 ####Run multi-map navigation (on the robot):
 
@@ -75,12 +75,6 @@ To build from source, clone the latest version from this repository into your ca
 	rviz -d /catkin_ws/src/multi_map_navigation/multi_map_navigation/rviz/multi_map.rviz
 
 
-## Launch files
-
-TODO
-
-
-## Config files
 
 [ROS]: http://www.ros.org
 [rviz]: http://wiki.ros.org/rviz
