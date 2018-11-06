@@ -48,7 +48,7 @@ To build from source, clone the latest version from this repository into your ca
 
 ## Usage
 
-####How to create a map:
+#### How to create a map:
 
 1. Record data while driving in the environment:
 
@@ -62,14 +62,14 @@ To build from source, clone the latest version from this repository into your ca
 
         roslaunch lidar_turtlebot_cartographer turtlebot_map_creation.launch bag_filenames:=/...
 
-####Run multi-map navigation (on the robot):
+#### Run multi-map navigation (on the robot):
 
     roslaunch lidar_turtlebot_bringup indoor_3d.launch
     roslaunch lidar_turtlebot_navigation scan_navigation.launch
     roslaunch multi_map_navigation multi_map_navigation.launch
 
 
-####Set goals for navigation and visualize the robot and the laser-scan data (on desktop):
+#### Set goals for navigation and visualize the robot and the laser-scan data (on desktop):
 
 	xhost local:[docker-container-id] (that the container has access to the diplay)
 	rviz -d /catkin_ws/src/multi_map_navigation/multi_map_navigation/rviz/multi_map.rviz
@@ -80,4 +80,3 @@ To build from source, clone the latest version from this repository into your ca
 [rviz]: http://wiki.ros.org/rviz
 [gazebo]: http://gazebosim.org/
 [cartographer]: http://wiki.ros.org/cartographer
-[sensor_msgs/Temperature]: http://docs.ros.org/api/sensor_msgs/html/msg/Temperature.html
