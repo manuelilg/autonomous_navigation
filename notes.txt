@@ -1,0 +1,66 @@
+====== ROS autonome Navigaiton mobiler Roboter ======
+
+===== Ressourcen: =====
+https://hub.docker.com/r/manuelilg/autonomous_navigation/
+
+=== Dependencies: ===
+
+== Docker: ==
+https://hub.docker.com/r/manuelilg/lidar_turtlebot/ \\
+https://hub.docker.com/r/manuelilg/cartographer_ros/
+
+== Github: ==
+https://github.com/manuelilg/multi_map_navigation \\
+https://github.com/manuelilg/lidar_turtlebot \\
+https://github.com/manuelilg/cartographer_ros \\
+https://github.com/manuelilg/velodyne \\
+https://github.com/manuelilg/multilevel_simulation \\
+https://github.com/manuelilg/multilevel_building \\
+https://github.com/manuelilg/floor_transparency_gazebo_plugin \\
+
+
+==== Installation ====
+Docker verwenden:
+  * Docker installieren https://docs.docker.com/install/linux/docker-ce/ubuntu/
+  * Docker Image herunterladen: docker pull ...
+  * Container erzeugen: docker run -it ... (siehe entsprechende Repository-Description)
+
+Installieren von Source:
+  * ROS installieren http://wiki.ros.org/kinetic/Installation/Ubuntu
+  * Installation einzelner ROS-Packages gemäss Readme von packages
+
+
+Beispiel Installation auf SBC UP-Squared:
+  * Mit Roboter verbinden von Desktop: ssh robot@UP-APL01 (PW: robot)
+  * Arbeits-Schritte gemäss: https://github.com/manuelilg/lidar_turtlebot/blob/master/notizen_installation.txt
+
+
+Gebrauch:
+Annahme die notwendigen ROS-Packete sind Installiert oder die Docker-Container sind gestartet
+
+Auf Roboter-PC
+  * Verbinden mit ssh
+  * docker container starten: sudo docker start -ia autonomous_navigation
+  * in container:
+    * source catkin_ws/devel/setup.bash
+    * roslaunch lidar_turtlebot_bringup indoor_3d.launch
+  * 2. und 3. terminal zu roboter mit ssh
+  * bash im gleichen docker container starten (für 2. 3. terminal): sudo docker exec -it autonomous_navigation bash
+  * in 2. terminal: roslaunch lidar_turtlebot_navigation scan_navigation.launch
+  * in 3. terminal: roslaunch multi_map_navigation multi_map_navigation.launch
+
+Auf Desktop-Pc
+  * start docker container:
+  * in anderem fenster: xhost local:9d495a676d41 (id von docker container)
+  * in docker container: export ROS_MASTER_URI=http://up-apl01:11311
+  * (roslaunch turtlebot_teleop keyboard_teleop.launch)
+  * rviz -d /catkin_ws/src/multi_map_navigation/multi_map_navigation/rviz/multi_map.rviz 
+
+
+
+Weitere Infos:
+  * Docker-Container wieder starten: docker start -ia <container-id>
+  * Weiteres Terminal zu Container öffnen: docker exec -it <container-id> bash
+  * Docker-Container verlassen: exit (im Haupt-Terminal vom Container, das erstellt wruden nach docker run oder docker start)
+  * Docker-Image erzeugen: docker build . -t <image-name> (in Verzeichnis von Dockerfile ausführen)
+
