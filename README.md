@@ -62,14 +62,17 @@ To build from source, clone the latest version from this repository into your ca
 
         roslaunch TODO
 
-####Run multi-map navigation:
+####Run multi-map navigation (on the robot):
 
-    roslaunch TODO
+    roslaunch lidar_turtlebot_bringup indoor_3d.launch
+    roslaunch lidar_turtlebot_navigation scan_navigation.launch
+    roslaunch multi_map_navigation multi_map_navigation.launch
 
 
-####Set goals for navigation and visualize the robot and the laser-scan data:
+####Set goals for navigation and visualize the robot and the laser-scan data (on desktop):
 
-	roslaunch TODO
+	xhost local:[docker-container-id] (that the container has access to the diplay)
+	rviz -d /catkin_ws/src/multi_map_navigation/multi_map_navigation/rviz/multi_map.rviz
 
 
 ## Launch files
